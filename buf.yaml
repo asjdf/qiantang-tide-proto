@@ -1,0 +1,11 @@
+version: v1
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
+  except:
+    - FIELD_LOWER_SNAKE_CASE
+deps:
+  - buf.build/googleapis/googleapis

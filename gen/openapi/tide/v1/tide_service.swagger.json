@@ -1,0 +1,229 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "tide/v1/tide_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TideService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/gapi/tide/v1/location/list": {
+      "get": {
+        "summary": "GetLocationList returns location list.",
+        "operationId": "TideService_GetLocationList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetLocationListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TideService"
+        ]
+      }
+    },
+    "/gapi/tide/v1/predict/day": {
+      "get": {
+        "summary": "GetPredictTide returns the predicted tide of the given day.",
+        "operationId": "TideService_GetDayPredictTide",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDayPredictTideResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "The date of the predict data.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TideService"
+        ]
+      }
+    },
+    "/gapi/tide/v1/predict/location": {
+      "get": {
+        "summary": "GetPredictTide returns the predicted tide of the given location.",
+        "operationId": "TideService_GetLocationPredictTide",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetLocationPredictTideResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "location",
+            "description": "The location of the tide.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "description": "The date of the tide.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TideService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "tidev1Location": {
+      "type": "object",
+      "properties": {
+        "unionId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "float"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "v1GetDayPredictTideResponse": {
+      "type": "object",
+      "properties": {
+        "tideList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Tide"
+          },
+          "description": "The predicted tide of the given day."
+        }
+      }
+    },
+    "v1GetLocationListResponse": {
+      "type": "object",
+      "properties": {
+        "locationList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/tidev1Location"
+          },
+          "description": "The location list."
+        }
+      }
+    },
+    "v1GetLocationPredictTideResponse": {
+      "type": "object",
+      "properties": {
+        "tideList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Tide"
+          },
+          "description": "The predicted tide of the given location."
+        }
+      }
+    },
+    "v1Tide": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "locationId": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tideHeight": {
+          "type": "number",
+          "format": "float"
+        },
+        "surgeHeight": {
+          "type": "number",
+          "format": "float"
+        },
+        "ornamentalLevel": {
+          "type": "string",
+          "title": "ornamental level from 1 to 5 in chinese (\"无\" is the lowest)"
+        }
+      }
+    }
+  }
+}

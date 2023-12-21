@@ -1,0 +1,22 @@
+syntax = "proto3";
+package tide.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/asjdf/qiantang-tide-proto/gen/proto/tide/v1;tideV1";
+
+message Location{
+  string unionId = 1;
+  string name = 2;
+  float latitude = 3;
+  float longitude = 4;
+}
+
+message Tide {
+  string id = 1;
+  string locationId = 2;
+  google.protobuf.Timestamp time = 3;
+  float tideHeight = 4;
+  float surgeHeight = 5;
+  string ornamentalLevel = 6; // ornamental level from 1 to 5 in chinese ("无" is the lowest)
+}

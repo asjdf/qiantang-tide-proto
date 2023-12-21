@@ -1,0 +1,51 @@
+syntax = "proto3";
+package tide.v1;
+
+import "google/api/annotations.proto";
+import "tide/v1/tide.proto";
+
+option go_package = "github.com/asjdf/qiantang-tide-proto/gen/proto/tide/v1;tideV1";
+
+service TideService {
+  // GetPredictTide returns the predicted tide of the given day.
+  rpc GetDayPredictTide(GetDayPredictTideRequest) returns (GetDayPredictTideResponse) {
+    option (google.api.http) = {get: "/gapi/tide/v1/predict/day"};
+  }
+  // GetPredictTide returns the predicted tide of the given location.
+  rpc GetLocationPredictTide(GetLocationPredictTideRequest) returns (GetLocationPredictTideResponse) {
+    option (google.api.http) = {get: "/gapi/tide/v1/predict/location"};
+  }
+  // GetLocationList returns location list.
+  rpc GetLocationList(GetLocationListRequest) returns (GetLocationListResponse) {
+    option (google.api.http) = {get: "/gapi/tide/v1/location/list"};
+  }
+}
+
+message GetDayPredictTideRequest {
+  // The date of the predict data.
+  string date = 1;
+}
+
+message GetDayPredictTideResponse {
+  // The predicted tide of the given day.
+  repeated Tide tideList = 1;
+}
+
+message GetLocationPredictTideRequest {
+  // The location of the tide.
+  string location = 1;
+  // The date of the tide.
+  string date = 2;
+}
+
+message GetLocationPredictTideResponse {
+  // The predicted tide of the given location.
+  repeated Tide tideList = 1;
+}
+
+message GetLocationListRequest {}
+
+message GetLocationListResponse {
+  // The location list.
+  repeated Location locationList = 1;
+}
