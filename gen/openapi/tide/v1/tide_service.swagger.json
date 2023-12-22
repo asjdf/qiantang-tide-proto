@@ -92,8 +92,8 @@
         },
         "parameters": [
           {
-            "name": "location",
-            "description": "The location of the tide.",
+            "name": "locationId",
+            "description": "The locationId of the tide.",
             "in": "query",
             "required": false,
             "type": "string"

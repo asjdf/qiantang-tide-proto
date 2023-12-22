@@ -16,7 +16,7 @@ export type GetDayPredictTideResponse = {
 }
 
 export type GetLocationPredictTideRequest = {
-  location?: string
+  locationId?: string
   date?: GoogleProtobufTimestamp.Timestamp
 }
 
