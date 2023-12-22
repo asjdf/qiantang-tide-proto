@@ -63,7 +63,8 @@
             "description": "The date of the predict data.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           }
         ],
         "tags": [
@@ -102,7 +103,8 @@
             "description": "The date of the tide.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           }
         ],
         "tags": [

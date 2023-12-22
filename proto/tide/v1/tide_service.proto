@@ -2,6 +2,7 @@ syntax = "proto3";
 package tide.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 import "tide/v1/tide.proto";
 
 option go_package = "github.com/asjdf/qiantang-tide-proto/gen/proto/tide/v1;tideV1";
@@ -23,7 +24,7 @@ service TideService {
 
 message GetDayPredictTideRequest {
   // The date of the predict data.
-  string date = 1;
+  google.protobuf.Timestamp date = 1;
 }
 
 message GetDayPredictTideResponse {
@@ -35,7 +36,7 @@ message GetLocationPredictTideRequest {
   // The location of the tide.
   string location = 1;
   // The date of the tide.
-  string date = 2;
+  google.protobuf.Timestamp date = 2;
 }
 
 message GetLocationPredictTideResponse {
