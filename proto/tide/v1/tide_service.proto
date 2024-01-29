@@ -20,6 +20,13 @@ service TideService {
   rpc GetLocationList(GetLocationListRequest) returns (GetLocationListResponse) {
     option (google.api.http) = {get: "/gapi/tide/v1/location/list"};
   }
+  // GetRealtimeTide returns the realtime tide height of the given location.
+  rpc GetRealtimeTide(GetRealtimeTideRequest) returns (GetRealtimeTideResponse) {
+    option (google.api.http) = {get: "/gapi/tide/v1/realtime"};
+  }
+  rpc GetRealtimeTideOfLocation(GetRealtimeTideOfLocationRequest) returns (GetRealtimeTideOfLocationResponse) {
+    option (google.api.http) = {get: "/gapi/tide/v1/location/realtime"};
+  }
 }
 
 message GetDayPredictTideRequest {
@@ -49,4 +56,19 @@ message GetLocationListRequest {}
 message GetLocationListResponse {
   // The location list.
   repeated Location locationList = 1;
+}
+
+message GetRealtimeTideRequest {}
+
+message GetRealtimeTideResponse {
+  repeated RealtimeTide realtimeTideList = 1;
+}
+
+message GetRealtimeTideOfLocationRequest {
+  // The locationId of the tide.
+  string locationId = 1;
+}
+
+message GetRealtimeTideOfLocationResponse {
+  RealtimeTide realtimeTide = 1;
 }

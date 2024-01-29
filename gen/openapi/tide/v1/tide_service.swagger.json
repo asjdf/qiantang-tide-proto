@@ -39,6 +39,37 @@
         ]
       }
     },
+    "/gapi/tide/v1/location/realtime": {
+      "get": {
+        "operationId": "TideService_GetRealtimeTideOfLocation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRealtimeTideOfLocationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "locationId",
+            "description": "The locationId of the tide.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TideService"
+        ]
+      }
+    },
     "/gapi/tide/v1/predict/day": {
       "get": {
         "summary": "GetPredictTide returns the predicted tide of the given day.",
@@ -107,6 +138,29 @@
             "format": "date-time"
           }
         ],
+        "tags": [
+          "TideService"
+        ]
+      }
+    },
+    "/gapi/tide/v1/realtime": {
+      "get": {
+        "summary": "GetRealtimeTide returns the realtime tide height of the given location.",
+        "operationId": "TideService_GetRealtimeTide",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRealtimeTideResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "TideService"
         ]
@@ -197,6 +251,42 @@
             "$ref": "#/definitions/v1Tide"
           },
           "description": "The predicted tide of the given location."
+        }
+      }
+    },
+    "v1GetRealtimeTideOfLocationResponse": {
+      "type": "object",
+      "properties": {
+        "realtimeTide": {
+          "$ref": "#/definitions/v1RealtimeTide"
+        }
+      }
+    },
+    "v1GetRealtimeTideResponse": {
+      "type": "object",
+      "properties": {
+        "realtimeTideList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1RealtimeTide"
+          }
+        }
+      }
+    },
+    "v1RealtimeTide": {
+      "type": "object",
+      "properties": {
+        "locationId": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tideHeight": {
+          "type": "number",
+          "format": "float"
         }
       }
     },

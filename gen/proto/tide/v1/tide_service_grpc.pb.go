@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	TideService_GetDayPredictTide_FullMethodName      = "/tide.v1.TideService/GetDayPredictTide"
-	TideService_GetLocationPredictTide_FullMethodName = "/tide.v1.TideService/GetLocationPredictTide"
-	TideService_GetLocationList_FullMethodName        = "/tide.v1.TideService/GetLocationList"
+	TideService_GetDayPredictTide_FullMethodName         = "/tide.v1.TideService/GetDayPredictTide"
+	TideService_GetLocationPredictTide_FullMethodName    = "/tide.v1.TideService/GetLocationPredictTide"
+	TideService_GetLocationList_FullMethodName           = "/tide.v1.TideService/GetLocationList"
+	TideService_GetRealtimeTide_FullMethodName           = "/tide.v1.TideService/GetRealtimeTide"
+	TideService_GetRealtimeTideOfLocation_FullMethodName = "/tide.v1.TideService/GetRealtimeTideOfLocation"
 )
 
 // TideServiceClient is the client API for TideService service.
@@ -34,6 +36,9 @@ type TideServiceClient interface {
 	GetLocationPredictTide(ctx context.Context, in *GetLocationPredictTideRequest, opts ...grpc.CallOption) (*GetLocationPredictTideResponse, error)
 	// GetLocationList returns location list.
 	GetLocationList(ctx context.Context, in *GetLocationListRequest, opts ...grpc.CallOption) (*GetLocationListResponse, error)
+	// GetRealtimeTide returns the realtime tide height of the given location.
+	GetRealtimeTide(ctx context.Context, in *GetRealtimeTideRequest, opts ...grpc.CallOption) (*GetRealtimeTideResponse, error)
+	GetRealtimeTideOfLocation(ctx context.Context, in *GetRealtimeTideOfLocationRequest, opts ...grpc.CallOption) (*GetRealtimeTideOfLocationResponse, error)
 }
 
 type tideServiceClient struct {
@@ -71,6 +76,24 @@ func (c *tideServiceClient) GetLocationList(ctx context.Context, in *GetLocation
 	return out, nil
 }
 
+func (c *tideServiceClient) GetRealtimeTide(ctx context.Context, in *GetRealtimeTideRequest, opts ...grpc.CallOption) (*GetRealtimeTideResponse, error) {
+	out := new(GetRealtimeTideResponse)
+	err := c.cc.Invoke(ctx, TideService_GetRealtimeTide_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tideServiceClient) GetRealtimeTideOfLocation(ctx context.Context, in *GetRealtimeTideOfLocationRequest, opts ...grpc.CallOption) (*GetRealtimeTideOfLocationResponse, error) {
+	out := new(GetRealtimeTideOfLocationResponse)
+	err := c.cc.Invoke(ctx, TideService_GetRealtimeTideOfLocation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TideServiceServer is the server API for TideService service.
 // All implementations must embed UnimplementedTideServiceServer
 // for forward compatibility
@@ -81,6 +104,9 @@ type TideServiceServer interface {
 	GetLocationPredictTide(context.Context, *GetLocationPredictTideRequest) (*GetLocationPredictTideResponse, error)
 	// GetLocationList returns location list.
 	GetLocationList(context.Context, *GetLocationListRequest) (*GetLocationListResponse, error)
+	// GetRealtimeTide returns the realtime tide height of the given location.
+	GetRealtimeTide(context.Context, *GetRealtimeTideRequest) (*GetRealtimeTideResponse, error)
+	GetRealtimeTideOfLocation(context.Context, *GetRealtimeTideOfLocationRequest) (*GetRealtimeTideOfLocationResponse, error)
 	mustEmbedUnimplementedTideServiceServer()
 }
 
@@ -96,6 +122,12 @@ func (UnimplementedTideServiceServer) GetLocationPredictTide(context.Context, *G
 }
 func (UnimplementedTideServiceServer) GetLocationList(context.Context, *GetLocationListRequest) (*GetLocationListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocationList not implemented")
+}
+func (UnimplementedTideServiceServer) GetRealtimeTide(context.Context, *GetRealtimeTideRequest) (*GetRealtimeTideResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRealtimeTide not implemented")
+}
+func (UnimplementedTideServiceServer) GetRealtimeTideOfLocation(context.Context, *GetRealtimeTideOfLocationRequest) (*GetRealtimeTideOfLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRealtimeTideOfLocation not implemented")
 }
 func (UnimplementedTideServiceServer) mustEmbedUnimplementedTideServiceServer() {}
 
@@ -164,6 +196,42 @@ func _TideService_GetLocationList_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TideService_GetRealtimeTide_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRealtimeTideRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TideServiceServer).GetRealtimeTide(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TideService_GetRealtimeTide_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TideServiceServer).GetRealtimeTide(ctx, req.(*GetRealtimeTideRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TideService_GetRealtimeTideOfLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRealtimeTideOfLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TideServiceServer).GetRealtimeTideOfLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TideService_GetRealtimeTideOfLocation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TideServiceServer).GetRealtimeTideOfLocation(ctx, req.(*GetRealtimeTideOfLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TideService_ServiceDesc is the grpc.ServiceDesc for TideService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -182,6 +250,14 @@ var TideService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLocationList",
 			Handler:    _TideService_GetLocationList_Handler,
+		},
+		{
+			MethodName: "GetRealtimeTide",
+			Handler:    _TideService_GetRealtimeTide_Handler,
+		},
+		{
+			MethodName: "GetRealtimeTideOfLocation",
+			Handler:    _TideService_GetRealtimeTideOfLocation_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

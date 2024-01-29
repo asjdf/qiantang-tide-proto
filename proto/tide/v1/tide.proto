@@ -20,3 +20,9 @@ message Tide {
   float surgeHeight = 5;
   string ornamentalLevel = 6; // ornamental level from 1 to 5 in chinese ("无" is the lowest)
 }
+
+message RealtimeTide {
+  string locationId = 1;
+  google.protobuf.Timestamp time = 2;
+  float tideHeight = 3;
+}
