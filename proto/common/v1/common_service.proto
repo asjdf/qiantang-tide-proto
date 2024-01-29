@@ -1,0 +1,18 @@
+syntax = "proto3";
+package common.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/asjdf/qiantang-tide-proto/gen/proto/common/v1;commonV1";
+
+service CommonService {
+  rpc Version(VersionRequest) returns (VersionResponse) {
+    option (google.api.http) = {get: "/gapi/common/v1/version"};
+  }
+}
+
+message VersionRequest {}
+
+message VersionResponse {
+  string version = 1;
+}
