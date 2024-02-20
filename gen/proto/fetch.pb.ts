@@ -301,6 +301,8 @@ function flattenRequestPayload<T extends RequestPayload>(
         objectToMerge = flattenRequestPayload(value as RequestPayload, newPath);
       } else if (isNonZeroValuePrimitive || isNonEmptyPrimitiveArray) {
         objectToMerge = { [newPath]: value };
+      } else if (value instanceof Date){
+        objectToMerge = { [newPath]: value.toISOString() };
       }
 
       return { ...acc, ...objectToMerge };
