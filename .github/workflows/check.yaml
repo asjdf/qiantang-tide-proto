@@ -38,7 +38,7 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: 'stable'
-      - run: go install github.com/grpc-ecosystem/protoc-gen-grpc-gateway-ts
+      - run: go install github.com/juanjiTech/protoc-gen-grpc-gateway-ts
       - uses: bufbuild/buf-setup-action@v1.26.1
         with:
           github_token: ${{ github.token }}

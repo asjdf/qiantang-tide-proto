@@ -3,5 +3,5 @@
 package qiantang_tide_proto
 
 import (
-	_ "github.com/grpc-ecosystem/protoc-gen-grpc-gateway-ts"
+	_ "github.com/juanjiTech/protoc-gen-grpc-gateway-ts"
 )

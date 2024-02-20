@@ -8,7 +8,7 @@ import * as fm from "../../fetch.pb"
 import * as GoogleProtobufTimestamp from "../../google/protobuf/timestamp.pb"
 import * as TideV1Tide from "./tide.pb"
 export type GetDayPredictTideRequest = {
-  date?: GoogleProtobufTimestamp.Timestamp
+  date?: Date
 }
 
 export type GetDayPredictTideResponse = {
@@ -17,7 +17,7 @@ export type GetDayPredictTideResponse = {
 
 export type GetLocationPredictTideRequest = {
   locationId?: string
-  date?: GoogleProtobufTimestamp.Timestamp
+  date?: Date
 }
 
 export type GetLocationPredictTideResponse = {

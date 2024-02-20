@@ -15,7 +15,7 @@ export type Location = {
 export type Tide = {
   id?: string
   locationId?: string
-  time?: GoogleProtobufTimestamp.Timestamp
+  time?: Date
   tideHeight?: number
   surgeHeight?: number
   ornamentalLevel?: string
@@ -23,6 +23,6 @@ export type Tide = {
 
 export type RealtimeTide = {
   locationId?: string
-  time?: GoogleProtobufTimestamp.Timestamp
+  time?: Date
   tideHeight?: number
 }
