@@ -5,6 +5,7 @@
 */
 
 import * as fm from "../../fetch.pb"
+import * as GoogleProtobufTimestamp from "../../google/protobuf/timestamp.pb"
 import * as TideV1Tide from "./tide.pb"
 export type GetDayPredictTideRequest = {
   date?: Date
