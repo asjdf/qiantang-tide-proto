@@ -117,15 +117,23 @@ export function replacer(key: any, value: any): any {
   return value;
 }
 
+function dateReviver(key, value) {
+  // check if value match ISO 8601 date format
+  if (typeof value === "string" && /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(.\d+)?(Z)?$/.test(value)) {
+    return new Date(value);
+  }
+  return value;
+}
+
 export function fetchReq<I, O>(path: string, init?: InitReq): Promise<O> {
   const {pathPrefix, ...req} = init || {}
 
   const url = pathPrefix ? `${pathPrefix}${path}` : path
 
-  return fetch(url, req).then(r => r.json().then((body: O) => {
-    if (!r.ok) { throw body; }
-    return body;
-  })) as Promise<O>
+  return fetch(url, req).then(r => {
+      const body: O = JSON.parse(r.text(), dateReviver);
+      return body;
+  }) as Promise<O>
 }
 
 // NotifyStreamEntityArrival is a callback that will be called on streaming entity arrival
@@ -301,6 +309,8 @@ function flattenRequestPayload<T extends RequestPayload>(
         objectToMerge = flattenRequestPayload(value as RequestPayload, newPath);
       } else if (isNonZeroValuePrimitive || isNonEmptyPrimitiveArray) {
         objectToMerge = { [newPath]: value };
+      } else if (value instanceof Date){
+        objectToMerge = { [newPath]: value.toISOString() };
       }
 
       return { ...acc, ...objectToMerge };

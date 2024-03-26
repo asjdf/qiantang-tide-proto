@@ -18,4 +18,5 @@ plugins:
   - name: grpc-gateway-ts
     out: gen/proto
     opt:
+      - use_proto_names=true
       - paths=source_relative
