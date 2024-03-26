@@ -1575,10 +1575,6 @@ github.com/imdario/mergo v0.3.16/go.mod h1:WBLT9ZmE3lPoWsEzCh9LPo3TiwVN+ZKEjmz+h
 github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo=
 github.com/jstemmer/go-junit-report v0.0.0-20190106144839-af01ea7f8024/go.mod h1:6v2b51hI/fHJwM22ozAgKL4VKDeJcHhJFhtBdhmNjmU=
 github.com/jstemmer/go-junit-report v0.9.1/go.mod h1:Brl9GWCQeLvo8nXZwPNNblvFj/XSXhF0NWZEnDohbsk=
-github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.3 h1:l7GVir7jjnOKWrXSX4Vp418CTfbA9H+rdmN1IUkejQU=
-github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.3/go.mod h1:LyQTwTNYrv3oOQTUvUYeTdsL81XBHR0b7qm7VaHLlv4=
-github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.4 h1:sowrS6Izlzaws6MOff2Cqem8MezJVYl36LePvRlsITM=
-github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.4/go.mod h1:LyQTwTNYrv3oOQTUvUYeTdsL81XBHR0b7qm7VaHLlv4=
 github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.5 h1:D97SSHUlMMijHZaHyz/k8aWecYzIE3UUqWd2Z6Xnu10=
 github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.5/go.mod h1:LyQTwTNYrv3oOQTUvUYeTdsL81XBHR0b7qm7VaHLlv4=
 github.com/jung-kurt/gofpdf v1.0.0/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+r32jIOes=
