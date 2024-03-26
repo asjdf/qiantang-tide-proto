@@ -4,7 +4,7 @@ go 1.21.1
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.0
-	github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.3
+	github.com/juanjiTech/protoc-gen-grpc-gateway-ts v1.2.5
 	google.golang.org/genproto/googleapis/api v0.0.0-20240325203815-454cdb8f5daa
 	google.golang.org/grpc v1.62.1
 	google.golang.org/protobuf v1.33.0
